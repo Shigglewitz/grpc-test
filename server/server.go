@@ -31,7 +31,7 @@ type routeGuideServer struct {
 func (s *routeGuideServer) GetFeature(ctx context.Context, point *pb.Point) (*pb.Feature, error) {
 	log.Printf("Received request: %v\n", point)
 	return &pb.Feature{
-		Name:     "unknown",
+		Name:     fmt.Sprintf("served from %s", os.Getenv("GO_PORT")),
 		Location: point,
 	}, nil
 }
