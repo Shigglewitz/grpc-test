@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"grpc-test/server"
+	"log"
+	"os"
+)
 
 func main() {
-    fmt.Println("hello world")
+	function := os.Getenv("FUNCTION")
+
+	if "server" == function {
+		server.StartServer()
+	} else {
+		log.Println("hello world")
+	}
 }
