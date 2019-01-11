@@ -1,8 +1,8 @@
 package main
 
 import (
+	"grpc-test/client"
 	"grpc-test/server"
-	"log"
 	"os"
 )
 
@@ -12,6 +12,6 @@ func main() {
 	if "server" == function {
 		server.StartServer()
 	} else {
-		log.Println("hello world")
+		client.GetFeature()
 	}
 }
