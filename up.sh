@@ -18,3 +18,10 @@ docker run \
   -e GO_PORT=8081 \
   -p 8081:8081 \
   shigglewitz/grpc:latest
+
+docker run \
+  -d \
+  -e SERVER_ADDR=host.docker.internal:9001 \
+  -e GO_PORT=9006 \
+  -p 9006:9006 \
+  shigglewitz/grpc:latest

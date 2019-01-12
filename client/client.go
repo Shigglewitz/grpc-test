@@ -23,12 +23,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Fprintf(w, "%v", feature)
+	fmt.Fprintf(w, "%v\n", feature)
 }
 
 func main() {
 	http.HandleFunc("/", handler)
 	portStr := os.Getenv("GO_PORT")
+	log.Printf("Listening on port %s\n", portStr)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", portStr), nil))
 }
 
