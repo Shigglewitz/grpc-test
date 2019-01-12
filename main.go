@@ -12,6 +12,7 @@ func main() {
 	if "server" == function {
 		server.StartServer()
 	} else {
-		client.GetFeature()
+		// client.GetFeature()
+		client.StartClientServer()
 	}
 }
