@@ -3,7 +3,9 @@
 2) ./up.sh
 
 3) while true; do curl localhost:9006; done
+the client running on this port will create a new grpc connection for every request, so you will see haproxy doing round robin load balancing
 
-3a) To see round robin in haproxy take effect, kill the docker container running the client (bound to port 9006) and restart it.  Then responses will start coming from port 8001
+4) while true; do curl localhost:9007; done
+the client running on this port will keep a single static connection, so there will be no round robin load balancing
 
-4) ./down.sh
+5) ./down.sh

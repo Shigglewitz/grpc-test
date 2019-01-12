@@ -16,7 +16,19 @@ var conn *grpc.ClientConn
 var client pb.RouteGuideClient
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	feature, err := client.GetFeature(context.Background(), &pb.Point{
+	myClient := client
+	if "reuse" != os.Getenv("CONN_POLICY") {
+		serverAddr := os.Getenv("SERVER_ADDR")
+		myConn, err := grpc.Dial(serverAddr, grpc.WithInsecure())
+		if err != nil {
+			panic(err)
+		}
+		defer myConn.Close()
+
+		myClient = pb.NewRouteGuideClient(myConn)
+	}
+
+	feature, err := myClient.GetFeature(context.Background(), &pb.Point{
 		Latitude:  409146138,
 		Longitude: -746188906,
 	})

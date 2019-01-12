@@ -22,6 +22,15 @@ docker run \
 docker run \
   -d \
   -e SERVER_ADDR=host.docker.internal:9001 \
+  -e CONN_POLICY=refresh \
   -e GO_PORT=9006 \
   -p 9006:9006 \
+  shigglewitz/grpc:latest
+
+docker run \
+  -d \
+  -e SERVER_ADDR=host.docker.internal:9001 \
+  -e CONN_POLICY=reuse \
+  -e GO_PORT=9007 \
+  -p 9007:9007 \
   shigglewitz/grpc:latest
